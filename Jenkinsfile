@@ -27,5 +27,6 @@ pipeline {
                 sh 'sleep 60'
 				echo 'tunggu 1 menit'
                 sh './jenkins/scripts/kill.sh'
+            }
     }
 }
