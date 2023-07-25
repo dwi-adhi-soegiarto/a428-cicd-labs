@@ -21,5 +21,11 @@ pipeline {
                 input message: 'Lanjutkan ke tahap Deploy? (Klik "Abort" untuk mengakhiri)'                  
             }
         }
+        stage('Deploy') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                sh 'sleep 60'
+				echo 'tunggu 1 menit'
+                sh './jenkins/scripts/kill.sh'
     }
 }
