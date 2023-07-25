@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:16-buster-slim'
-            args '-p 3100:3000'
+            args '-p 3000:3000'
         }
     }
     stages {
@@ -16,11 +16,9 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Deploy') { 
+        stage('Manual Approval') { 
             steps {
-                sh './jenkins/scripts/deliver.sh' 
-                input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)' 
-                sh './jenkins/scripts/kill.sh' 
+                input message: 'Lanjutkan ke tahap Deploy? (Klik "Abort" untuk mengakhiri)'                  
             }
         }
     }
